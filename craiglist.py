@@ -1,3 +1,5 @@
+import platform
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -30,7 +32,12 @@ for search in searches:
 
     # print the soup to a file
     f = open('soup.txt', 'w')
-    f.write(soup.prettify('UTF-8'))
+    if platform.system() is 'Linux':
+        print('Platform is Linux')
+        f.write(soup.prettify())
+    else:
+        print('Platform is Windows')
+        f.write(soup.prettify('UTF-8'))
     f.close()
 
     print('Splitting the soup...')
