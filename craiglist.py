@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 
+import smtplib
+from email.mime.text import MIMEText
+
 print('Starting...')
 
 # Read the list of searches
@@ -48,6 +51,40 @@ for search in searches:
 
     processedResultsFile = open('processedresults.txt', 'a+')
 
+    # Iterate through the results
+    index = 0
+    for result in results:
+        if result not in processedResults:
+            # Build the message
+#            msg = MIMEText('')
+#            msg['Subject'] = titles[index].get_text()
+#            msg['From'] = 'mattvanaco@gmail.com'
+#            msg['To'] = 'mattvanaco@gmail.com'
+
+
+            # Add to list of processed
+            processedResultsFile.write(str(result['data-pid']) + '\n')
+
+        index = index + 1
+
+
+# WE DON'T WANT ANYTHING AFTER THIS COMMENT
+    # Get new results
+    newResults = []
+    for result in results:
+        if result not in processedResults:
+            newResults.append(result)
+
+    # Process new results
+    for newResult in newResults:
+
+        # Build email to send
+        msg = MIMEText('')
+
+        # Add to list of processed
+        processedResultsFile.write(str(newResult['data-pid']) + '\n')
+
+# WE DON'T WANT ANYTHING AFTER THIS COMMENT
     # Look through each result we got from Craigslist
     for result in results:
 
