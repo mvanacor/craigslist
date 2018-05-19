@@ -27,7 +27,7 @@ for search in searches:
 
     # print the soup to a file
     f = open('soup.txt', 'w')
-    f.write(soup.prettify())
+    f.write(soup.prettify('UTF-8'))
     f.close()
 
     print('Splitting the soup...')
@@ -56,7 +56,7 @@ for search in searches:
             # print results
             f = open('listitems.txt', 'w')
             for result in results:
-                f.write(str(result['class']) + ' ' + str(result['data-pid']) + '\n')
+                f.write(str(result['data-pid']) + '\n')
             f.close()
 
     # print titles/links
