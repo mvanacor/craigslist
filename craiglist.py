@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup
 print('Starting...')
 
 # Read the list of searches
-searchesFile = open('searches.txt', 'r')
-searches = searchFiles.readlines()
+searchFile = open('searches.txt', 'r')
+searches = searchFile.readlines()
 searchFile.close()
 
 for search in searches:
@@ -26,9 +26,9 @@ for search in searches:
     print('Made some soup...')
 
     # print the soup to a file
-    #f = open('soup.txt', 'w')
-    #f.write(soup.prettify())
-    #f.close()
+    f = open('soup.txt', 'w')
+    f.write(soup.prettify())
+    f.close()
 
     print('Splitting the soup...')
 
@@ -42,8 +42,8 @@ for search in searches:
     print ('Number of results: ' + str(len(results)))
 
     # Get the list of items we've already seen
-    processedResultsFile = open('processedresults.txt', r)
-    processedResults = processedResults.readlines()
+    processedResultsFile = open('processedresults.txt', 'r')
+    processedResults = processedResultsFile.readlines()
     processedResultsFile.close()
 
     processedResultsFile = open('processedresults.txt', 'a+')
@@ -53,14 +53,11 @@ for search in searches:
 
         # Only process results we haven't seen yet
         if result not in processedResults:
-            
-           
-
-    # print results
-    #f = open('listitems.txt', 'w')
-    #for result in results:
-    #    f.write(str(result['class']) + ' ' + str(result['data-pid']) + '\n')
-    #f.close()
+            # print results
+            f = open('listitems.txt', 'w')
+            for result in results:
+                f.write(str(result['class']) + ' ' + str(result['data-pid']) + '\n')
+            f.close()
 
     # print titles/links
     #f = open('titles.txt', 'w')
