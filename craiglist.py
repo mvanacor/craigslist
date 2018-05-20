@@ -56,7 +56,11 @@ for search in searches:
     processedResults = processedResultsFile.readlines()
     processedResultsFile.close()
 
+    # Open with append
     processedResultsFile = open('processedresults.txt', 'a+')
+
+    # Open file to simulate message
+    messages = open('messages.txt', 'w')
 
     # Iterate through the results
     index = 0
@@ -67,7 +71,10 @@ for search in searches:
 #            msg['Subject'] = titles[index].get_text()
 #            msg['From'] = 'mattvanaco@gmail.com'
 #            msg['To'] = 'mattvanaco@gmail.com'
-
+#            print (titles[index]['href'])
+#            print (titles[index].get_text())
+            messages.write('Subject: ' + titles[index].get_text() + '\n')
+            messages.write('Body: ' + titles[index]['href'] + ' ' + prices[index].get_text() + '\n\n')
 
             # Add to list of processed
             processedResultsFile.write(str(result['data-pid']) + '\n')
