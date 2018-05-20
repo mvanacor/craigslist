@@ -32,12 +32,12 @@ for search in searches:
 
     # print the soup to a file
     f = open('soup.txt', 'w')
-    if platform.system() is 'Linux':
-        print('Platform is Linux')
-        f.write(soup.prettify())
-    else:
+    if platform.system() is 'Windows':
         print('Platform is Windows')
         f.write(soup.prettify('UTF-8'))
+    else:
+        print('Platform is Linux')
+        f.write(soup.prettify())
     f.close()
 
     print('Splitting the soup...')
